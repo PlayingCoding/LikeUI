@@ -34,11 +34,11 @@ npm run test:e2e
 
 ## todo list
 
-- [ ] 环境搭建
-  - [ ] 基础开发环境搭建
-  - [ ] 加入 esLint，styleLint 代码检查
-  - [ ] 加入测试工具
-  - [ ] 加入持续集成工具
+- [x] 环境搭建
+  - [x] 基础开发环境搭建
+  - [x] 加入 esLint，styleLint 代码检查
+  - [x] 加入测试工具
+  - [x] 加入持续集成工具
 - [ ] 开发工作
   - [ ] 公共 UI 主题配置
   - [ ] 组件
@@ -52,7 +52,6 @@ npm run test:e2e
     - [ ] Menu  导航菜单
     - [ ] Pagination  分页
     - [ ] Steps 步骤条
-    - [ ] 
     - [ ] AutoComplete  自动完成
     - [ ] Cascader  级联选择
     - [ ] CheckBox  多选框
@@ -70,7 +69,6 @@ npm run test:e2e
     - [ ] TreeSelect 树选择
     - [ ] Transfer 穿梭框
     - [ ] Upload 上传
-    - [ ] 
     - [ ] Avatar 头像
     - [ ] Badge 徽标数
     - [ ] Calendar 日历
@@ -85,7 +83,6 @@ npm run test:e2e
     - [ ] Tag 标签
     - [ ] Timeline 时间轴
     - [ ] Tree 树形控件
-    - [ ] 
     - [ ] Alert 警告提示
     - [ ] Drawer 抽屉
     - [ ] Modal 对话框
@@ -95,7 +92,6 @@ npm run test:e2e
     - [ ] Popconfirm 气泡确认框
     - [ ] Spin 加载中
     - [ ] LoadingBar 加载进度条
-    - [ ] 
     - [ ] Anchor 锚点
     - [ ] BackTop 回到顶部
     - [ ] Divider 分割线
