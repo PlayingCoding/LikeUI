@@ -4,11 +4,15 @@
   "description": "一个基于 ant design 设计的 ui 框架",
   "private": true,
   "scripts": {
-    "serve": "vue-cli-service serve",
+    "start": "npm run serve",
+    "serve": "vue-cli-service serve --open --copy",
     "build": "vue-cli-service build",
     "lint": "vue-cli-service lint",
     "test:unit": "vue-cli-service test:unit",
     "test:e2e": "vue-cli-service test:e2e"
+  },
+  "gitHooks": {
+    "pre-commit": "lint-staged"
   },
   "repository": {
     "type": "git",
