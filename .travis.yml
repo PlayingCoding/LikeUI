@@ -1,31 +1,11 @@
-sudo: false
-
+sudo: required
 language: node_js
-
 node_js:
-  - 8
-
-cache:
-  directories:
-    - $HOME/.npm
-
-matrix:
-  fast_finish: true
-  include:
-    - env: TEST_TYPE=lint
-    - env: REACT=16 TEST_TYPE=test:dist
-    - env: REACT=16 TEST_TYPE=test:lib
-    - env: REACT=16 TEST_TYPE=test:es
-    - env: REACT=16 TEST_TYPE=test:dom
-    - env: REACT=16 TEST_TYPE=test:node
-    - env: REACT=15 TEST_TYPE=test:dist
-    - env: REACT=15 TEST_TYPE=test:lib
-    - env: REACT=15 TEST_TYPE=test:es
-    - env: REACT=15 TEST_TYPE=test:dom
-    - env: REACT=15 TEST_TYPE=test:node
-
-before_script:
-  - scripts/install-react.sh
-
+  - '8'
 script:
-  - scripts/travis-script.sh
+  - 'npm run lint'
+  - 'npm run test:unit'
+  - 'npm run test:e2e'
+before_script:
+  - 'sudo chown root /opt/google/chrome/chrome-sandbox'
+  - 'sudo chmod 4755 /opt/google/chrome/chrome-sandbox'
