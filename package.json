@@ -21,7 +21,8 @@
   },
   "keywords": [
     "UI、antd、ant",
-    "design"
+    "design",
+    "LikeUI"
   ],
   "author": "PlayingCoding org",
   "license": "MIT",
@@ -49,11 +50,10 @@
     "vue-template-compiler": "^2.5.17"
   },
   "lint-staged": {
-    "**/*.{js,jsx,less}": [
+    "**/*.{js,vue,less,scss}": [
       "prettier --wirter",
-      "git add"
-    ],
-    "**/*.{js,jsx}": "lint-staged:js",
-    "**/*.less": "stylelint --syntax less"
+      "git add",
+      "npm run lint"
+    ]
   }
 }
