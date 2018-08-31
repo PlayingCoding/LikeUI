@@ -2,7 +2,7 @@ module.exports = {
   pages: {
     index: {
       // entry for the page
-      entry: './docs/app/main.js',
+      entry: './docs/main.js',
       // the source template
       template: 'public/index.html',
       // output as dist/index.html
