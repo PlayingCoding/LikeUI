@@ -5,12 +5,12 @@
 </template>
 
 <script>
-import { oneOf, responseiveList } from '../../utils/assist.js'
+import { oneOf, findComponentDownward, findBrothersComponents, responseiveList } from '../../utils/assist.js'
 
 const prefixCls = 'iku-row'
 
 export default {
-  name: 'Row',
+  name: 'URow',
   props: {
     type: {
       validator (value) {
@@ -73,7 +73,24 @@ export default {
     }
   },
   methods: {
-
+    updateGutter (val) {
+      // 纵向寻找 子UCol 组件
+      const ColY = findComponentDownward(this, 'UCol')
+      // 横向寻找 兄弟UCol 组件
+      const ColX = findBrothersComponents(ColY, 'UCol', false)
+      if (ColX.length) {
+        ColX.forEach(child => {
+          if (val !== 0) {
+            child.gutter = val
+          }
+        })
+      }
+    }
+  },
+  watch: {
+    gutter (val) {
+      this.updateGutter(val)
+    }
   }
 }
 </script>

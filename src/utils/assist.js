@@ -2,7 +2,7 @@
  * 判断参数是否被数组包含
  * @export
  * @param {any} value
- * @param {Array} validList
+ * @param {array} validList
  */
 export function oneOf (value, validList) {
   validList.some(v => {
@@ -10,7 +10,7 @@ export function oneOf (value, validList) {
   })
 }
 
-// 响应式，各分辨率判断
+// 响应式，各分辨率对照表
 export const responseiveList = [
   {
     type: 'xxl',
@@ -44,3 +44,49 @@ export const responseiveList = [
     }
   }
 ]
+
+/**
+ * 向下寻找子组件
+ * @export
+ * @param {object} root
+ * @param {string} componentName
+ */
+export function findComponentDownward (root, componentName) {
+  const $children = root.$children
+  let children = null
+  if ($children.length) {
+    for (const child of $children) {
+      const name = child.$options.name
+      if (name === componentName) {
+        children = child
+        break
+      } else {
+        children = findComponentDownward(child, componentName)
+        if (children) {
+          break
+        }
+      }
+    }
+  }
+  return children
+}
+
+/**
+ * 同层寻找兄弟组件
+ * @export
+ * @param {object} context
+ * @param {string} componentName
+ * @param {boolean} [exceptMe=true]
+ * @returns
+ */
+export function findBrothersComponents (context, componentName, exceptMe = true) {
+  let brothersComponents = context.$parent.$children.filter(item => {
+    return item.$options.name === componentName
+  })
+  const index = brothersComponents.findIndex(item => {
+    return item._uid === context._uid
+  })
+  if (exceptMe) brothersComponents.splice(index, i)
+  return brothersComponents
+}
+
