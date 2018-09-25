@@ -38,7 +38,7 @@ export default {
     ],
     className: String
   },
-  computed () {
+  computed: {
     classes () {
       return [
         {
@@ -66,15 +66,15 @@ export default {
       }
       if (gutterValue !== 0) {
         style = {
-          marginLeft: gutterValue / -2 + 'px'
-          marginMargin: gutterValue / -2 + 'px'
+          marginLeft: `${gutterValue / -2}px`,
+          marginMargin: `${gutterValue / -2}px`
         }
       }
     }
   },
   methods: {
     updateGutter (val) {
-      // 纵向寻找 子UCol 组件
+      // 纵向向下寻找 子UCol 组件
       const ColY = findComponentDownward(this, 'UCol')
       // 横向寻找 兄弟UCol 组件
       const ColX = findBrothersComponents(ColY, 'UCol', false)

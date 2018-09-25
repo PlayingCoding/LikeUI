@@ -50,6 +50,7 @@ export const responseiveList = [
  * @export
  * @param {object} root
  * @param {string} componentName
+ * @returns
  */
 export function findComponentDownward (root, componentName) {
   const $children = root.$children
@@ -69,6 +70,27 @@ export function findComponentDownward (root, componentName) {
     }
   }
   return children
+}
+
+/**
+ * 向上寻找父组件
+ * @export
+ * @param {object} root
+ * @param {string} componentName
+ * @param {any} componentNames
+ * @returns
+ */
+export function findComponentUpward (root, componentName, componentNames) {
+  componentNames = typeof componentName === 'string'
+    ? [componentName]
+    : componentName
+  let parent = root.$parent
+  let name = parent.$options.name
+  while (parent && (!name || componentNames.indexOf(name) < 0)) {
+    parent = parent.$parent
+    if (parent) name = parent.$options.name
+  }
+  return parent
 }
 
 /**
