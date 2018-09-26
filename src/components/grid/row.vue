@@ -5,33 +5,45 @@
 </template>
 
 <script>
-import { oneOf, findComponentDownward, findBrothersComponents, responseiveList } from '../../utils/assist.js'
+import {
+  oneOf,
+  findComponentDownward,
+  findBrothersComponents,
+  responseiveList
+} from "../../utils/assist.js";
 
-const prefixCls = 'iku-row'
+const prefixCls = "iku-row";
 
 export default {
-  name: 'URow',
+  name: "URow",
   props: {
     type: {
-      validator (value) {
-        return oneOf(value, ['flex'])
+      validator(value) {
+        return oneOf(value, ["flex"]);
       }
     },
     align: {
-      validator (value) {
-        return oneOf(value, ['top', 'middle', 'bottom'])
+      validator(value) {
+        return oneOf(value, ["top", "middle", "bottom"]);
       }
     },
     justify: {
-      validator (value) {
-        return oneOf(value, ['start', 'end', 'center', 'space-around', 'space-between'])
+      validator(value) {
+        return oneOf(value, [
+          "start",
+          "end",
+          "center",
+          "space-around",
+          "space-between"
+        ]);
       }
     },
     gutter: [
       {
         type: Number,
         default: 0
-      }, {
+      },
+      {
         type: Object,
         default: {}
       }
@@ -39,7 +51,7 @@ export default {
     className: String
   },
   computed: {
-    classes () {
+    classes() {
       return [
         {
           [`${prefixCls}`]: !this.type,
@@ -48,49 +60,49 @@ export default {
           [`${prefixCls}-${this.type}-${this.justify}`]: !!this.justify,
           [`${this.className}`]: !!this.className
         }
-      ]
+      ];
     },
-    styles () {
-      let style = {}
-      let gutterValue = 0
-      if (typeof this.gutter === 'number') {
-        gutterValue = this.gutter
-
-      } else if (typeof this.gutters === 'object') {
+    styles() {
+      let style = {};
+      let gutterValue = 0;
+      if (typeof this.gutter === "number") {
+        gutterValue = this.gutter;
+      } else if (typeof this.gutters === "object") {
         const type = responseiveList.foreach(v => {
           if (v.validator(window.clientWidth)) {
-            return v.type
+            return v.type;
           }
-        })
-        gutterValue = this.gutter[type] || 0
+        });
+        gutterValue = this.gutter[type] || 0;
       }
       if (gutterValue !== 0) {
         style = {
           marginLeft: `${gutterValue / -2}px`,
           marginMargin: `${gutterValue / -2}px`
-        }
+        };
       }
+      return style;
     }
   },
   methods: {
-    updateGutter (val) {
+    updateGutter(val) {
       // 纵向向下寻找 子UCol 组件
-      const ColY = findComponentDownward(this, 'UCol')
+      const ColY = findComponentDownward(this, "UCol");
       // 横向寻找 兄弟UCol 组件
-      const ColX = findBrothersComponents(ColY, 'UCol', false)
+      const ColX = findBrothersComponents(ColY, "UCol", false);
       if (ColX.length) {
         ColX.forEach(child => {
           if (val !== 0) {
-            child.gutter = val
+            child.gutter = val;
           }
-        })
+        });
       }
     }
   },
   watch: {
-    gutter (val) {
-      this.updateGutter(val)
+    gutter(val) {
+      this.updateGutter(val);
     }
   }
-}
+};
 </script>

@@ -13,9 +13,6 @@
     "test:e2e": "vue-cli-service test:e2e",
     "prettier": "prettier --write ./src/**/**/**/*"
   },
-  "gitHooks": {
-    "pre-commit": "lint-staged"
-  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/PlayingCoding/LikeUI.git"
@@ -41,13 +38,13 @@
     "@vue/cli-plugin-eslint": "^3.0.1",
     "@vue/cli-plugin-unit-jest": "^3.0.1",
     "@vue/cli-service": "^3.0.1",
-    "@vue/eslint-config-prettier": "^3.0.1",
+    "@vue/eslint-config-prettier": "^3.0.4",
     "@vue/test-utils": "^1.0.0-beta.20",
     "babel-core": "7.0.0-bridge.0",
     "babel-jest": "^23.0.1",
     "less": "^3.8.1",
     "less-loader": "^4.1.0",
-    "lint-staged": "^7.2.2",
+    "lint-staged": "^7.3.0",
     "node-sass": "^4.9.0",
     "sass-loader": "^7.0.1",
     "vue-template-compiler": "^2.5.17"

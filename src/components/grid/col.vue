@@ -5,12 +5,12 @@
 </template>
 
 <script>
-import { findComponentUpward } from '../../utils/assist.js'
+import { findComponentUpward } from "../../utils/assist.js";
 
-const prefixCls = 'iku-col'
+const prefixCls = "iku-col";
 
 export default {
-  name: 'UCol',
+  name: "UCol",
   props: {
     offset: [Number, String],
     order: [Number, String],
@@ -25,13 +25,13 @@ export default {
     xxl: [Number, Object],
     className: String
   },
-  data () {
+  data() {
     return {
       gutter: 0
-    }
+    };
   },
   computed: {
-    classes () {
+    classes() {
       let classList = [
         `${prefixCls}`,
         {
@@ -42,47 +42,47 @@ export default {
           [`${prefixCls}-span-${this.span}`]: this.span,
           [`${this.className}`]: !!this.className
         }
-      ]
-      ['xs', 'sm', 'md', 'lg', 'xl', 'xxl'].forEach(size => {
-        if (typeof this[size] === 'number') {
-          classList.push(`${prefixCls}-span-${size}-${this.size}`)
-        } else if (typeof this[size] === 'object') {
-          let props = this[size]
+      ];
+      ["xs", "sm", "md", "lg", "xl", "xxl"].forEach(size => {
+        if (typeof this[size] === "number") {
+          classList.push(`${prefixCls}-span-${size}-${this.size}`);
+        } else if (typeof this[size] === "object") {
+          let props = this[size];
           Object.keys(props).forEach(prop => {
             classList.push(
-              prop !== 'span'
+              prop !== "span"
                 ? `${prefixCls}-${size}-${prop}-${props[prop]}`
                 : `${prefixCls}-span-${size}-${props[prop]}`
-            )
-          })
+            );
+          });
         }
-      })
-      return classList
+      });
+      return classList;
     },
-    styles () {
-      let style = {}
+    styles() {
+      let style = {};
       if (this.gutter !== 0) {
         style = {
           paddingLeft: `${this.gutter / 2}px`,
           paddingRight: `${this.gutter / 2}px`
-        }
+        };
       }
+      return style;
     }
   },
   methods: {
-    updateGutter () {
-      const Row = findComponentUpward(this, 'Row')
+    updateGutter() {
+      const Row = findComponentUpward(this, "Row");
       if (Row) {
-        Row.updateGutter(Row.gutter)
+        Row.updateGutter(Row.gutter);
       }
     }
   },
-  mounted () {
-    this.updateGutter()
+  mounted() {
+    this.updateGutter();
   },
-  beforeDestroy () {
-    this.updateGutter()
+  beforeDestroy() {
+    this.updateGutter();
   }
-}
+};
 </script>
-
