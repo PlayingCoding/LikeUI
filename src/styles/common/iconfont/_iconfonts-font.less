@@ -1,0 +1,33 @@
+// iconfonts Font Path
+// --------------------------
+
+@font-face {
+  font-family: @iconfonts-font-family;
+     src:
+      url("@{iconfonts-font-path}/iconfonts.eot?v=@{iconfonts-version}"),
+      url("@{iconfonts-font-path}/iconfonts.eot?v=@{iconfonts-version}#iefix") format("embedded-opentype"),
+      url("@{iconfonts-font-path}/iconfonts.ttf?v=@{iconfonts-version}") format("truetype"),
+      url("@{iconfonts-font-path}/iconfonts.woff?v=@{iconfonts-version}") format("woff"),
+      url("@{iconfonts-font-path}/iconfonts.svg?v=@{iconfonts-version}#iconfont") format("svg");
+  font-weight: normal;
+  font-style: normal;
+ }
+ .iku-icon() {
+     display: inline-block;
+     font-family: @iconfonts-font-family;
+     speak: none;
+     font-size:16px;
+     font-style: normal;
+     font-weight: normal;
+     font-variant: normal;
+     text-transform: none;
+     text-rendering: auto;
+     line-height: 1;
+     -webkit-font-smoothing: antialiased;
+     -moz-osx-font-smoothing: grayscale;
+     vertical-align: middle;
+ }
+ 
+ .iku-icon {
+     .iku-icon();
+ }
