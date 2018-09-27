@@ -1,13 +1,15 @@
 import Button from "./components/button";
 import Icon from "./components/icon";
-
+import { Row, Col } from "./components/grid";
 const components = {
+  Col,
+  Row,
   Button,
   ButtonGroup: Button.Group,
   Icon
 };
 
-const iku = {
+const likeui = {
   ...components,
   iButton: Button
 };
@@ -15,11 +17,11 @@ const iku = {
 const install = function(Vue, opts = {}) {
   if (install.installed) return;
 
-  Object.keys(iku).forEach(key => {
-    Vue.component(key, iku[key]);
+  Object.keys(likeui).forEach(key => {
+    Vue.component(key, likeui[key]);
   });
 
-  Vue.prototype.$IKU = {
+  Vue.prototype.$LIKEUI = {
     size: opts.size || "",
     transfer: "transfer" in opts ? opts.transfer : ""
   };

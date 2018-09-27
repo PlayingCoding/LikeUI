@@ -9,9 +9,48 @@ export function oneOf(value, validList) {
   }
   return false;
 }
+// 响应式，各分辨率对照表
+export const responseiveList = [
+  {
+    type: "xxl",
+    validator(value) {
+      return value >= 1600;
+    }
+  },
+  {
+    type: "xl",
+    validator(value) {
+      return value >= 1200;
+    }
+  },
+  {
+    type: "lg",
+    validator(value) {
+      return value >= 992;
+    }
+  },
+  {
+    type: "md",
+    validator(value) {
+      return value >= 768;
+    }
+  },
+  {
+    type: "sm",
+    validator(value) {
+      return value >= 576;
+    }
+  },
+  {
+    type: "xs",
+    validator(value) {
+      return value <= 575;
+    }
+  }
+];
 
 export function camelcaseToHyphen(str) {
-  return str.replace(/([a-z])([A-Z])/g, "$1-$2").toLowerCase();
+  return str.replace(/([a-z])([A-Z])/g, '$1-$2').toLowerCase();
 }
 
 // For Modal scrollBar hidden
@@ -19,28 +58,28 @@ let cached;
 export function getScrollBarSize(fresh) {
   if (isServer) return 0;
   if (fresh || cached === undefined) {
-    const inner = document.createElement("div");
-    inner.style.width = "100%";
-    inner.style.height = "200px";
+    const inner = document.createElement('div');
+    inner.style.width = '100%';
+    inner.style.height = '200px';
 
-    const outer = document.createElement("div");
+    const outer = document.createElement('div');
     const outerStyle = outer.style;
 
-    outerStyle.position = "absolute";
+    outerStyle.position = 'absolute';
     outerStyle.top = 0;
     outerStyle.left = 0;
-    outerStyle.pointerEvents = "none";
-    outerStyle.visibility = "hidden";
-    outerStyle.width = "200px";
-    outerStyle.height = "150px";
-    outerStyle.overflow = "hidden";
+    outerStyle.pointerEvents = 'none';
+    outerStyle.visibility = 'hidden';
+    outerStyle.width = '200px';
+    outerStyle.height = '150px';
+    outerStyle.overflow = 'hidden';
 
     outer.appendChild(inner);
 
     document.body.appendChild(outer);
 
     const widthContained = inner.offsetWidth;
-    outer.style.overflow = "scroll";
+    outer.style.overflow = 'scroll';
     let widthScroll = inner.offsetWidth;
 
     if (widthContained === widthScroll) {
@@ -55,32 +94,25 @@ export function getScrollBarSize(fresh) {
 }
 
 // watch DOM change
-export const MutationObserver = isServer
-  ? false
-  : window.MutationObserver ||
-    window.WebKitMutationObserver ||
-    window.MozMutationObserver ||
-    false;
+export const MutationObserver = isServer ? false : window.MutationObserver || window.WebKitMutationObserver || window.MozMutationObserver || false;
 
 const SPECIAL_CHARS_REGEXP = /([\:\-\_]+(.))/g;
 const MOZ_HACK_REGEXP = /^moz([A-Z])/;
 
 function camelCase(name) {
-  return name
-    .replace(SPECIAL_CHARS_REGEXP, function(_, separator, letter, offset) {
-      return offset ? letter.toUpperCase() : letter;
-    })
-    .replace(MOZ_HACK_REGEXP, "Moz$1");
+  return name.replace(SPECIAL_CHARS_REGEXP, function (_, separator, letter, offset) {
+    return offset ? letter.toUpperCase() : letter;
+  }).replace(MOZ_HACK_REGEXP, 'Moz$1');
 }
 // getStyle
 export function getStyle(element, styleName) {
   if (!element || !styleName) return null;
   styleName = camelCase(styleName);
-  if (styleName === "float") {
-    styleName = "cssFloat";
+  if (styleName === 'float') {
+    styleName = 'cssFloat';
   }
   try {
-    const computed = document.defaultView.getComputedStyle(element, "");
+    const computed = document.defaultView.getComputedStyle(element, '');
     return element.style[styleName] || computed ? computed[styleName] : null;
   } catch (e) {
     return element.style[styleName];
@@ -91,28 +123,30 @@ export function getStyle(element, styleName) {
 function firstUpperCase(str) {
   return str.toString()[0].toUpperCase() + str.toString().slice(1);
 }
-export { firstUpperCase };
+export {
+  firstUpperCase
+};
 
 // Warn
 export function warnProp(component, prop, correctType, wrongType) {
   correctType = firstUpperCase(correctType);
   wrongType = firstUpperCase(wrongType);
-    console.error(`[iView warn]: Invalid prop: type check failed for prop ${prop}. Expected ${correctType}, got ${wrongType}. (found in component: ${component})`);    // eslint-disable-line
+  console.error(`[iView warn]: Invalid prop: type check failed for prop ${prop}. Expected ${correctType}, got ${wrongType}. (found in component: ${component})`); // eslint-disable-line
 }
 
 function typeOf(obj) {
   const toString = Object.prototype.toString;
   const map = {
-    "[object Boolean]": "boolean",
-    "[object Number]": "number",
-    "[object String]": "string",
-    "[object Function]": "function",
-    "[object Array]": "array",
-    "[object Date]": "date",
-    "[object RegExp]": "regExp",
-    "[object Undefined]": "undefined",
-    "[object Null]": "null",
-    "[object Object]": "object"
+    '[object Boolean]': 'boolean',
+    '[object Number]': 'number',
+    '[object String]': 'string',
+    '[object Function]': 'function',
+    '[object Array]': 'array',
+    '[object Date]': 'date',
+    '[object RegExp]': 'regExp',
+    '[object Undefined]': 'undefined',
+    '[object Null]': 'null',
+    '[object Object]': 'object'
   };
   return map[toString.call(obj)];
 }
@@ -122,19 +156,19 @@ function deepCopy(data) {
   const t = typeOf(data);
   let o;
 
-  if (t === "array") {
+  if (t === 'array') {
     o = [];
-  } else if (t === "object") {
+  } else if (t === 'object') {
     o = {};
   } else {
     return data;
   }
 
-  if (t === "array") {
+  if (t === 'array') {
     for (let i = 0; i < data.length; i++) {
       o.push(deepCopy(data[i]));
     }
-  } else if (t === "object") {
+  } else if (t === 'object') {
     for (let i in data) {
       o[i] = deepCopy(data[i]);
     }
@@ -142,21 +176,24 @@ function deepCopy(data) {
   return o;
 }
 
-export { deepCopy };
+export {
+  deepCopy
+};
 
 // scrollTop animation
 export function scrollTop(el, from = 0, to, duration = 500, endCallback) {
   if (!window.requestAnimationFrame) {
-    window.requestAnimationFrame =
+    window.requestAnimationFrame = (
       window.webkitRequestAnimationFrame ||
       window.mozRequestAnimationFrame ||
       window.msRequestAnimationFrame ||
-      function(callback) {
+      function (callback) {
         return window.setTimeout(callback, 1000 / 60);
-      };
+      }
+    );
   }
   const difference = Math.abs(from - to);
-  const step = Math.ceil((difference / duration) * 50);
+  const step = Math.ceil(difference / duration * 50);
 
   function scroll(start, end, step) {
     if (start === end) {
@@ -164,9 +201,9 @@ export function scrollTop(el, from = 0, to, duration = 500, endCallback) {
       return;
     }
 
-    let d = start + step > end ? end : start + step;
+    let d = (start + step > end) ? end : start + step;
     if (start > end) {
-      d = start - step < end ? end : start - step;
+      d = (start - step < end) ? end : start - step;
     }
 
     if (el === window) {
@@ -181,7 +218,7 @@ export function scrollTop(el, from = 0, to, duration = 500, endCallback) {
 
 // Find components upward
 function findComponentUpward(context, componentName, componentNames) {
-  if (typeof componentName === "string") {
+  if (typeof componentName === 'string') {
     componentNames = [componentName];
   } else {
     componentNames = componentName;
@@ -195,7 +232,9 @@ function findComponentUpward(context, componentName, componentNames) {
   }
   return parent;
 }
-export { findComponentUpward };
+export {
+  findComponentUpward
+};
 
 // Find component downward
 export function findComponentDownward(context, componentName) {
@@ -239,11 +278,7 @@ export function findComponentsUpward(context, componentName) {
 }
 
 // Find brothers components
-export function findBrothersComponents(
-  context,
-  componentName,
-  exceptMe = true
-) {
+export function findBrothersComponents(context, componentName, exceptMe = true) {
   let res = context.$parent.$children.filter(item => {
     return item.$options.name === componentName;
   });
@@ -254,18 +289,17 @@ export function findBrothersComponents(
 
 /* istanbul ignore next */
 const trim = function(string) {
-  return (string || "").replace(/^[\s\uFEFF]+|[\s\uFEFF]+$/g, "");
+  return (string || '').replace(/^[\s\uFEFF]+|[\s\uFEFF]+$/g, '');
 };
 
 /* istanbul ignore next */
 export function hasClass(el, cls) {
   if (!el || !cls) return false;
-  if (cls.indexOf(" ") !== -1)
-    throw new Error("className should not contain space.");
+  if (cls.indexOf(' ') !== -1) throw new Error('className should not contain space.');
   if (el.classList) {
     return el.classList.contains(cls);
   } else {
-    return (" " + el.className + " ").indexOf(" " + cls + " ") > -1;
+    return (' ' + el.className + ' ').indexOf(' ' + cls + ' ') > -1;
   }
 }
 
@@ -273,7 +307,7 @@ export function hasClass(el, cls) {
 export function addClass(el, cls) {
   if (!el) return;
   let curClass = el.className;
-  const classes = (cls || "").split(" ");
+  const classes = (cls || '').split(' ');
 
   for (let i = 0, j = classes.length; i < j; i++) {
     const clsName = classes[i];
@@ -283,7 +317,7 @@ export function addClass(el, cls) {
       el.classList.add(clsName);
     } else {
       if (!hasClass(el, clsName)) {
-        curClass += " " + clsName;
+        curClass += ' ' + clsName;
       }
     }
   }
@@ -295,8 +329,8 @@ export function addClass(el, cls) {
 /* istanbul ignore next */
 export function removeClass(el, cls) {
   if (!el || !cls) return;
-  const classes = cls.split(" ");
-  let curClass = " " + el.className + " ";
+  const classes = cls.split(' ');
+  let curClass = ' ' + el.className + ' ';
 
   for (let i = 0, j = classes.length; i < j; i++) {
     const clsName = classes[i];
@@ -306,7 +340,7 @@ export function removeClass(el, cls) {
       el.classList.remove(clsName);
     } else {
       if (hasClass(el, clsName)) {
-        curClass = curClass.replace(" " + clsName + " ", " ");
+        curClass = curClass.replace(' ' + clsName + ' ', ' ');
       }
     }
   }
@@ -316,21 +350,21 @@ export function removeClass(el, cls) {
 }
 
 export const dimensionMap = {
-  xs: "480px",
-  sm: "768px",
-  md: "992px",
-  lg: "1200px",
-  xl: "1600px"
+  xs: '480px',
+  sm: '768px',
+  md: '992px',
+  lg: '1200px',
+  xl: '1600px',
 };
 
 export function setMatchMedia() {
-  if (typeof window !== "undefined") {
+  if (typeof window !== 'undefined') {
     const matchMediaPolyfill = mediaQuery => {
       return {
         media: mediaQuery,
         matches: false,
         on() {},
-        off() {}
+        off() {},
       };
     };
     window.matchMedia = window.matchMedia || matchMediaPolyfill;

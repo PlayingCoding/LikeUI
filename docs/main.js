@@ -1,9 +1,9 @@
 import Vue from "vue";
 import App from "./App.vue";
 import router from "./router";
-import iKu from "../src/index";
+import LIKEUI from "../src/index";
 Vue.config.productionTip = false;
-Vue.use(iKu);
+Vue.use(LIKEUI);
 
 new Vue({
   router,

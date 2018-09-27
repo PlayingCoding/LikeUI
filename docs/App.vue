@@ -11,7 +11,7 @@
 @import "../src/styles/index.less";
 </style>
 
-<style lang="scss">
+<style lang="less">
 #app {
   font-family: "Avenir", Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
