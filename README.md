@@ -45,7 +45,7 @@ npm run test:e2e
     - [ ] Button 按钮
     - [x] Icon  图标
     - [x] Grid  栅格
-    - [ ] Layout  布局
+    - [x] Layout  布局
     - [ ] Affix 固钉
     - [ ] Breadcrumb  面包屑
     - [ ] Dropdown  下拉菜单
