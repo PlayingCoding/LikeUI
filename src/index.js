@@ -1,8 +1,14 @@
 import { Row, Col } from "./components/grid";
+import { Layout, Sider, Header, Content, Footer } from "./components/layout";
 
 const components = {
   Col,
-  Row
+  Row,
+  Layout,
+  Sider,
+  Header,
+  Content,
+  Footer
 };
 
 const likeui = {
