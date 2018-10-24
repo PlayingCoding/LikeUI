@@ -4,10 +4,14 @@
  * @param {*} value
  * @param {array} validList
  */
+// 判断参数是否是其中之一
 export function oneOf(value, validList) {
-  validList.some(v => {
-    return value === v;
-  });
+  for (let i = 0; i < validList.length; i++) {
+    if (value === validList[i]) {
+      return true;
+    }
+  }
+  return false;
 }
 
 /**
@@ -105,16 +109,6 @@ export const responseiveList = [
   }
 ];
 
-// breakpoint map
-export const dimensionMap = {
-  xs: "575px",
-  sm: "576px",
-  md: "768px",
-  lg: "992px",
-  xl: "1200px",
-  xxl: "1600px"
-};
-
 /**
  * 向下寻找子组件
  * @export
@@ -123,19 +117,17 @@ export const dimensionMap = {
  * @returns
  */
 export function findComponentDownward(root, componentName) {
-  const $children = root.$children;
+  const childrens = root.$children;
   let children = null;
-  if ($children.length) {
-    for (const child of $children) {
+  if (childrens.length) {
+    for (const child of childrens) {
       const name = child.$options.name;
       if (name === componentName) {
         children = child;
         break;
       } else {
         children = findComponentDownward(child, componentName);
-        if (children) {
-          break;
-        }
+        if (children) break;
       }
     }
   }

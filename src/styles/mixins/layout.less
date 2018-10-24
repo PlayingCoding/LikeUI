@@ -11,20 +11,23 @@
 
 .float-grid-columns(@class) {
   .col(@index) {
+    // initial
     @item: ~".@{col-prefix-cls}-span@{class}-@{index}";
     .col((@index + 1), @item);
   }
-  .col(@index, @list) when (@index <= @grid-columns) {
+  .col(@index, @list) when (@index =< @grid-columns) {
+    // general
     @item: ~".@{col-prefix-cls}-span@{class}-@{index}";
     .col((@index + 1), ~"@{list}, @{item}");
   }
   .col(@index, @list) when (@index > @grid-columns) {
+    // terminal
     @{list} {
       float: left;
       flex: 0 0 auto;
     }
   }
-  .col(1);
+  .col(1); // kickstart it
 }
 
 .loop-grid-columns(@index, @class) when (@index > 0) {
@@ -36,7 +39,7 @@
     left: percentage((@index / @grid-columns));
   }
   .@{col-prefix-cls}@{class}-pull-@{index} {
-    left: percentage((@index / @grid-columns));
+    right: percentage((@index / @grid-columns));
   }
   .@{col-prefix-cls}@{class}-offset-@{index} {
     margin-left: percentage((@index / @grid-columns));

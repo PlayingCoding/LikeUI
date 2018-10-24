@@ -7,7 +7,6 @@ import likeui from "../src/index.js";
 Vue.use(likeui);
 
 Vue.config.productionTip = false;
-
 new Vue({
   router,
   render: h => h(App)

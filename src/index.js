@@ -1,3 +1,5 @@
+import Button from "./components/button";
+import Icon from "./components/icon";
 import { Row, Col } from "./components/grid";
 import { Layout, Sider, Header, Content, Footer } from "./components/layout";
 
@@ -8,11 +10,15 @@ const components = {
   Sider,
   Header,
   Content,
-  Footer
+  Footer,
+  Button,
+  ButtonGroup: Button.Group,
+  Icon
 };
 
 const likeui = {
-  ...components
+  ...components,
+  iButton: Button
 };
 
 const install = function(Vue, opts = {}) {
@@ -28,14 +34,16 @@ const install = function(Vue, opts = {}) {
   };
 };
 
+// auto install
 if (typeof window !== "undefined" && window.Vue) {
   install(window.Vue);
 }
 
 const API = {
-  version: process.env.VERSION,
+  version: process.env.VERSION, // eslint-disable-line no-undef
   install,
   ...components
 };
 
 export default API;
+// module.exports.default = module.exports = API; // eslint-disable-line no-undef

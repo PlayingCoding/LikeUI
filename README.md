@@ -43,7 +43,7 @@ npm run test:e2e
   - [ ] 公共 UI 主题配置
   - [ ] 组件
     - [ ] Button 按钮
-    - [ ] Icon  图标
+    - [x] Icon  图标
     - [x] Grid  栅格
     - [ ] Layout  布局
     - [ ] Affix 固钉
