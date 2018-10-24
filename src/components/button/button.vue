@@ -1,35 +1,35 @@
 <template>
     <!-- 如果是有herf属性则渲染成a标签 -->
     <a
-        v-if="to"
-        :class="classes"
-        :disabled="disabled"
-        :href="linkUrl"
-        :target="target"
-        @click.exact="handleClickLink($event, false)"
-        @click.ctrl="handleClickLink($event, true)"
-        @click.meta="handleClickLink($event, true)">
-        <Icon type="sync" v-if="loading"></Icon>
-        <Icon :type="icon" :custom="customIcon" v-if="(icon || customIcon) && !loading"></Icon>
-        <span v-if="showSlot" ref="slot"><slot></slot></span>
+      v-if="to"
+      :class="classes"
+      :disabled="disabled"
+      :href="linkUrl"
+      :target="target"
+      @click.exact="handleClickLink($event, false)"
+      @click.ctrl="handleClickLink($event, true)"
+      @click.meta="handleClickLink($event, true)">
+      <Icon type="sync" v-if="loading"></Icon>
+      <Icon :type="icon" :custom="customIcon" v-if="(icon || customIcon) && !loading"></Icon>
+      <span v-if="showSlot" ref="slot"><slot></slot></span>
     </a>
     <!-- 否则渲染成button标签 -->
     <button
-        v-else
-        :type="htmlType"
-        :class="classes"
-        :disabled="disabled"
-        @click="handleClickLink">
-        <Icon class="iku-load-loop" type="ios-loading" v-if="loading"></Icon>
-        <Icon :type="icon" :custom="customIcon" v-if="(icon || customIcon) && !loading"></Icon>
-        <span v-if="showSlot" ref="slot"><slot></slot></span>
+      v-else
+      :type="htmlType"
+      :class="classes"
+      :disabled="disabled"
+      @click="handleClickLink">
+      <Icon class="iku-load-loop" type="ios-loading" v-if="loading"></Icon>
+      <Icon :type="icon" :custom="customIcon" v-if="(icon || customIcon) && !loading"></Icon>
+      <span v-if="showSlot" ref="slot"><slot></slot></span>
     </button>
 </template>
 <script>
-import Icon from "../icon";
-import { oneOf } from "../../utils/assist";
-import mixinsLink from "../../mixins/link";
-const prefixCls = "iku-btn";
+import Icon from "../icon"
+import { oneOf } from "../../utils/assist"
+import mixinsLink from "../../mixins/link"
+const prefixCls = "iku-btn"
 export default {
   name: "Button",
   mixins: [mixinsLink],
@@ -46,21 +46,21 @@ export default {
           "success",
           "warning",
           "error"
-        ]);
+        ])
       },
       default: "default"
     },
     shape: {
       validator(value) {
-        return oneOf(value, ["circle", "circle-outline"]);
+        return oneOf(value, ["circle", "circle-outline"])
       }
     },
     size: {
       validator(value) {
-        return oneOf(value, ["small", "large", "default"]);
+        return oneOf(value, ["small", "large", "default"])
       },
       default() {
-        return !this.$IKU || this.$IKU.size === "" ? "default" : this.$IKU.size;
+        return !this.$IKU || this.$IKU.size === "" ? "default" : this.$IKU.size
       }
     },
     loading: Boolean,
@@ -68,7 +68,7 @@ export default {
     htmlType: {
       default: "button",
       validator(value) {
-        return oneOf(value, ["button", "submit", "reset"]);
+        return oneOf(value, ["button", "submit", "reset"])
       }
     },
     icon: {
@@ -91,7 +91,7 @@ export default {
   data() {
     return {
       showSlot: true
-    };
+    }
   },
   computed: {
     classes() {
@@ -108,18 +108,18 @@ export default {
             (!!this.icon || !!this.customIcon || this.loading),
           [`${prefixCls}-ghost`]: this.ghost
         }
-      ];
+      ]
     }
   },
   methods: {
     // Ctrl or CMD and click, open in new window when use `to`
     handleClickLink(event, new_window = false) {
-      this.$emit("click", event);
-      this.handleCheckClick(event, new_window);
+      this.$emit("click", event)
+      this.handleCheckClick(event, new_window)
     }
   },
   mounted() {
-    this.showSlot = this.$slots.default !== undefined;
+    this.showSlot = this.$slots.default !== undefined
   }
-};
+}
 </script>

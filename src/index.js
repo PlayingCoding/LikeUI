@@ -1,9 +1,16 @@
 import Button from "./components/button";
 import Icon from "./components/icon";
 import { Row, Col } from "./components/grid";
+import { Layout, Sider, Header, Content, Footer } from "./components/layout";
+
 const components = {
   Col,
   Row,
+  Layout,
+  Sider,
+  Header,
+  Content,
+  Footer,
   Button,
   ButtonGroup: Button.Group,
   Icon

@@ -6,7 +6,6 @@
 
 <script>
 import {
-  oneOf,
   findComponentDownward,
   findBrothersComponents,
   responseiveList
@@ -15,27 +14,27 @@ import {
 const prefixCls = "iku-row";
 
 export default {
-  name: "URow",
+  name: "Row",
   props: {
     type: {
       validator(value) {
-        return oneOf(value, ["flex"]);
+        return ["flex"].includes(value);
       }
     },
     align: {
       validator(value) {
-        return oneOf(value, ["top", "middle", "bottom"]);
+        return ["top", "middle", "bottom"].includes(value);
       }
     },
     justify: {
       validator(value) {
-        return oneOf(value, [
+        return [
           "start",
           "end",
           "center",
           "space-around",
           "space-between"
-        ]);
+        ].includes(value);
       }
     },
     gutter: [
@@ -86,10 +85,10 @@ export default {
   },
   methods: {
     updateGutter(val) {
-      // 纵向向下寻找 子UCol 组件
-      const ColY = findComponentDownward(this, "UCol");
-      // 横向寻找 兄弟UCol 组件
-      const ColX = findBrothersComponents(ColY, "UCol", false);
+      // 纵向向下寻找 子 Col 组件
+      const ColY = findComponentDownward(this, "Col");
+      // 横向寻找 兄弟 Col 组件
+      const ColX = findBrothersComponents(ColY, "Col", false);
       if (ColX.length) {
         ColX.forEach(child => {
           if (val !== 0) {

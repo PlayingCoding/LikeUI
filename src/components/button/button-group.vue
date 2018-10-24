@@ -1,7 +1,7 @@
 <template>
-    <div :class="classes">
-        <slot></slot>
-    </div>
+  <div :class="classes">
+    <slot></slot>
+  </div>
 </template>
 <script>
 import { oneOf } from "../../utils/assist";

@@ -10,7 +10,7 @@ import { findComponentUpward } from "../../utils/assist.js";
 const prefixCls = "iku-col";
 
 export default {
-  name: "UCol",
+  name: "Col",
   props: {
     offset: [Number, String],
     order: [Number, String],
