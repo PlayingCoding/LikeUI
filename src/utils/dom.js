@@ -1,8 +1,13 @@
 import Vue from "vue";
 const isServer = Vue.prototype.$isServer;
 
-// dom元素绑定事件
-// 解决SSR(服务端渲染)情况下，addEventListener 问题
+/**
+ * dom元素绑定事件
+ * 解决SSR(服务端渲染)情况下，addEventListener 问题
+ * @param {dom} element
+ * @param {string} event
+ * @param {function} handler
+ */
 export const on = (function() {
   if (!isServer && document.addEventListener) {
     return function(element, event, handler) {
@@ -19,8 +24,13 @@ export const on = (function() {
   }
 })();
 
-// dom元素解绑事件
-// 解决SSR(服务端渲染)情况下，removeEventListener 问题
+/**
+ * dom元素解绑事件
+ * 解决SSR(服务端渲染)情况下，removeEventListener 问题
+ * @param {dom} element
+ * @param {string} event
+ * @param {function} handler
+ */
 export const off = (function() {
   if (!isServer && document.removeEventListener) {
     return function(element, event, handler) {

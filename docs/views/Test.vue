@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="testDiv">
     <Layout>
       <Sider
         collapsible
@@ -21,6 +21,14 @@
         <Footer>footer</Footer>
       </Layout>
     </Layout>
+    <div class="affixDemo">
+      <div class="firstChild"></div>
+      <Affix :offsetTop="20" :target="getTarget">
+      <!-- <Affix :offsetTop="20"> -->
+        <Button type="success" long>SUBMIT</Button>
+      </Affix>
+      <div class="secondChild"></div>
+    </div>
   </div>
 </template>
 
@@ -35,7 +43,27 @@ export default {
   methods: {
     onCollapse(val) {
       this.isCollapsed = val;
+    },
+    getTarget() {
+      return document.getElementsByClassName("affixDemo")[0];
     }
   }
 };
 </script>
+
+<style>
+.testDiv {
+  height: 3000px;
+}
+.affixDemo {
+  height: 500px;
+  overflow: auto;
+}
+.firstChild {
+  height: 100px;
+}
+.secondChild {
+  height: 1000px;
+}
+</style>
+
