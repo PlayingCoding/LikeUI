@@ -17,7 +17,7 @@ export function oneOf(value, validList) {
 /**
  * 向上寻找父组件
  * @export
- * @param {object} root
+ * @param {dom} root
  * @param {string} componentName
  * @param {*} componentNames
  * @returns
@@ -37,7 +37,7 @@ export function findComponentUpward(root, componentName, componentNames) {
 /**
  * 同层寻找兄弟组件
  * @export
- * @param {object} context
+ * @param {dom} context
  * @param {string} componentName
  * @param {boolean} [exceptMe=true]
  * @returns
@@ -112,7 +112,7 @@ export const responseiveList = [
 /**
  * 向下寻找子组件
  * @export
- * @param {object} root
+ * @param {dom} root
  * @param {string} componentName
  * @returns
  */
