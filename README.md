@@ -46,8 +46,8 @@ npm run test:e2e
     - [x] Icon  图标
     - [x] Grid  栅格
     - [x] Layout  布局
-    - [ ] Affix 固钉
-    - [ ] Breadcrumb  面包屑
+    - [x] Affix 固钉
+    - [ ] Breadcrumb  面包屑  coding......
     - [ ] Dropdown  下拉菜单
     - [ ] Menu  导航菜单
     - [ ] Pagination  分页
